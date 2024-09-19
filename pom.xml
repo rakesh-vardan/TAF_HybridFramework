@@ -75,11 +75,6 @@
             <!-- Specify the testng.xml file to use -->
             <suiteXmlFile>${suiteXMLFile}</suiteXmlFile>
           </suiteXmlFiles>
-
-          <!-- You can also set any system properties or parameters here -->
-          <systemPropertyVariables>
-            <browser>chrome</browser>
-          </systemPropertyVariables>
         </configuration>
       </plugin>
     </plugins>

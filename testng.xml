@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="io.learn.listeners.TestListener"/>
     </listeners>
-    <parameter name="browser" value="edge"/>
+    <parameter name="browser" value="chrome"/>
     <test name="Regression Test">
         <classes>
             <class name="io.learn.tests.LoginTest"/>
