@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Automation Suite">
+    <listeners>
+        <listener class-name="io.learn.listeners.TestListener"/>
+    </listeners>
+    <parameter name="browser" value="edge"/>
+    <test name="Regression Test">
+        <classes>
+            <class name="io.learn.tests.LoginTest"/>
+            <class name="io.learn.tests.ProductTest"/>
+            <class name="io.learn.tests.CartTest"/>
+            <class name="io.learn.tests.LogoutTest"/>
+        </classes>
+    </test>
+</suite>
