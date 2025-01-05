@@ -1,6 +1,5 @@
 package io.learn.pages;
 
-import io.learn.exceptions.ElementNotFoundException;
 import io.learn.exceptions.LoginFailedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;

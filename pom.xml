@@ -17,6 +17,7 @@
     <selenium.version>4.24.0</selenium.version>
     <testng.version>7.10.2</testng.version>
     <log4j.version>2.24.0</log4j.version>
+    <rest-assured.version>5.5.0</rest-assured.version>
     <extent.report.version>5.1.2</extent.report.version>
   </properties>
 
@@ -60,6 +61,22 @@
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.16.0</version>
+    </dependency>
+
+    <!-- REST Assured -->
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>${rest-assured.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- JSON Path -->
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-path</artifactId>
+      <version>${rest-assured.version}</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
