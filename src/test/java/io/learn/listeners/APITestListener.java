@@ -3,6 +3,7 @@ package io.learn.listeners;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -28,7 +29,9 @@ public class APITestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         if (extentTest.get() != null) {
+            Response apiResponse = (Response)result.getTestContext().getAttribute("apiResponse");
             extentTest.get().pass("Test passed");
+            extentTest.get().info("Response Body: " + formatJson(apiResponse.getBody().asString()));
         }
     }
 
@@ -44,10 +47,8 @@ public class APITestListener implements ITestListener {
             if (apiRequest != null && apiResponse != null) {
                 // Log API request and response details
                 extentTest.get().info("API Request: " + apiRequest);
-                extentTest.get().info("API Response: " + apiResponse.asString());
-
                 extentTest.get().info("Response Status: " + apiResponse.getStatusCode());
-                extentTest.get().info("Response Body: " + apiResponse.getBody());
+                extentTest.get().info("Response Body: " + formatJson(apiResponse.getBody().asString()));
             } else {
                 extentTest.get().info("API request/response data is not available.");
             }
@@ -73,5 +74,15 @@ public class APITestListener implements ITestListener {
 
     public static ExtentTest getTest() {
         return extentTest.get();
+    }
+
+    // Utility method to format JSON for better readability
+    private String formatJson(String jsonString) {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(new ObjectMapper().readTree(jsonString));
+        } catch (Exception e) {
+            return jsonString; // In case of an error, just return the raw JSON
+        }
     }
 }
