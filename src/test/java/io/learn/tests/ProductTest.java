@@ -9,7 +9,7 @@ import static org.testng.Assert.assertTrue;
 
 public class ProductTest extends BaseTest {
 
-    @Test
+    @Test(priority = 1)
     public void testProductDetails() {
         ExtentTest test = TestListener.getTest();
 
@@ -23,7 +23,7 @@ public class ProductTest extends BaseTest {
         assertTrue(priceDisplayed, "Product price is not displayed.");
         test.log(Status.PASS, "Product price is displayed.");}
 
-    @Test
+    @Test(priority = 2)
     public void testAddToCart() {
         ExtentTest test = TestListener.getTest();
         test.log(Status.INFO, "Adding product to cart.");

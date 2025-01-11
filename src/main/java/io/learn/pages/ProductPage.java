@@ -4,12 +4,18 @@ import io.learn.exceptions.InvalidProductSelectionException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ProductPage {
 
     private WebDriver driver;
 
-    private By addToCartButton = By.id("add-to-cart-sauce-labs-backpack");
+    private By addToCartButton = By.xpath("//button[@id='add-to-cart-sauce-labs-backpack']");
     private By productTitle = By.className("inventory_item_name");
     private By productPrice = By.className("inventory_item_price");
     private By cartLink = By.className("shopping_cart_link");
@@ -50,8 +56,14 @@ public class ProductPage {
     }
 
     public boolean isProductPriceDisplayed(String productName) {
-        return driver.findElement(By.xpath("//div[text()='" + productName + "']/../../../../div/div[2]/div"))
-                .isDisplayed();
+        WebElement productNameElement = driver.findElement(By.xpath("//div[text()='" + productName + "']"));
+
+        return driver.findElement(RelativeLocator.with(By.tagName("div")).toLeftOf(addToCartButton)
+                .near(productNameElement, 2000)).isDisplayed();
+    }
+
+    public String getProductPrice() {
+        return driver.findElement(RelativeLocator.with(By.tagName("div")).toLeftOf(addToCartButton)).getText();
     }
 
     public boolean isProductInCart(String productName) {

@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
 
 public class PetApiTest {
 
-    private static final String PET_ID = "6454";
+    private static final String PET_ID = "6789";
     private static final ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     @Test
